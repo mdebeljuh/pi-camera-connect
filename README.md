@@ -2,9 +2,11 @@
 [![npm](https://img.shields.io/npm/v/pi-camera-connect.svg)](https://www.npmjs.com/package/pi-camera-connect)
 
 # Pi Camera Connect - for NodeJS
-!!Replaced raspistill with rpicam-still to support Raspberry Pi 4 and 400
-!!Replaced raspivid with rpicam-vid to support Raspberry Pi 4 and 400
-!!camera is working, still in development
+- !!Replaced raspistill with rpicam-still to support Raspberry Pi 4 and 400
+
+- !!Replaced raspivid with rpicam-vid to support Raspberry Pi 4 and 400
+
+- !!camera is working, still in development
 
 `pi-camera-connect` is a library to capture and stream Raspberry Pi camera data directly to NodeJS.
 
@@ -260,7 +262,6 @@ const stillCamera = new StillCamera({
 - `contrast: number` - _Range: `-100`-`100`; Default: `0`_
 - `brightness: number` - _Range: `0`-`100`; Default: `50`_
 - `saturation: number` - _Range: `-100`-`100`; Default: `0`_
-- `iso: number` - _Range: `100`-`800`; Default: Auto_
 - `exposureCompensation: number` - _Range: `-10`-`10`; Default: `0`_
 - [`exposureMode: ExposureMode`](#exposuremode) - _Default: `ExposureMode.Auto`_
 - [`awbMode: AwbMode`](#awbmode) - _Default: `AwbMode.Auto`_
@@ -306,7 +307,6 @@ const streamCamera = new StreamCamera({
 - `contrast: number` - _Range: `-100`-`100`; Default: `0`_
 - `brightness: number` - _Range: `0`-`100`; Default: `50`_
 - `saturation: number` - _Range: `-100`-`100`; Default: `0`_
-- `iso: number` - _Range: `100`-`800`; Default: Auto_
 - `exposureCompensation: number` - _Range: `-10`-`10`; Default: `0`_
 - [`exposureMode: ExposureMode`](#exposuremode) - _Default: `ExposureMode.Auto`_
 - [`awbMode: AwbMode`](#awbmode) - _Default: `AwbMode.Auto`_
@@ -455,19 +455,9 @@ These are slightly different depending on the version of Raspberry Pi camera you
 
 Exposure mode options.
 
-- `ExposureMode.Off`
-- `ExposureMode.Auto`
-- `ExposureMode.Night`
-- `ExposureMode.NightPreview`
-- `ExposureMode.Backlight`
-- `ExposureMode.Spotlight`
-- `ExposureMode.Sports`
-- `ExposureMode.Snow`
-- `ExposureMode.Beach`
-- `ExposureMode.VeryLong`
-- `ExposureMode.FixedFps`
-- `ExposureMode.AntiShake`
-- `ExposureMode.Fireworks`
+- `ExposureMode.Normal`
+- `ExposureMode.Sport`
+- `ExposureMode.Long`
 
 ```javascript
 import { ExposureMode } from 'pi-camera-connect';
@@ -476,18 +466,14 @@ import { ExposureMode } from 'pi-camera-connect';
 ## `AwbMode`
 
 White balance mode options.
-
-- `AwbMode.Off`
 - `AwbMode.Auto`
-- `AwbMode.Sun`
-- `AwbMode.Cloud`
-- `AwbMode.Shade`
+- `AwbMode.Incandescent`
 - `AwbMode.Tungsten`
 - `AwbMode.Fluorescent`
-- `AwbMode.Incandescent`
-- `AwbMode.Flash`
-- `AwbMode.Horizon`
-- `AwbMode.GreyWorld`
+- `AwbMode.Indoor`
+- `AwbMode.DayLight`
+- `AwbMode.Cloudy`
+- `AwbMode.Custom`
 
 ```javascript
 import { AwbMode } from 'pi-camera-connect';
