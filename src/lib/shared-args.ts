@@ -3,12 +3,14 @@ import { StreamOptions } from './stream-camera';
 import { Flip } from '..';
 
 /**
- * Get the command line arguments for `raspistill` or `raspivid` that are common among both
+ * Get the command line arguments for `rpicam-still` or `rpicam-vid` that are common among both
  *
  * @param options Camera options
  */
 export function getSharedArgs(options: StillOptions | StreamOptions): string[] {
   return [
+    '--verbose',
+    '0',
     /**
      * Width
      */
@@ -66,9 +68,9 @@ export function getSharedArgs(options: StillOptions | StreamOptions): string[] {
     ...(options.saturation ? ['--saturation', options.saturation.toString()] : []),
 
     /**
-     * ISO
-     */
+     * ISO - not supported by `rpicam-still` use gain instead
     ...(options.iso ? ['--ISO', options.iso.toString()] : []),
+     */
 
     /**
      * EV Compensation

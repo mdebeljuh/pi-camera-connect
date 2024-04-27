@@ -52,7 +52,7 @@ class StreamCamera extends EventEmitter {
   private childProcess?: ChildProcessWithoutNullStreams;
   private streams: Array<stream.Readable> = [];
 
-  static readonly jpegSignature = Buffer.from([0xff, 0xd8, 0xff, 0xdb, 0x00, 0x84, 0x00]);
+  static readonly jpegSignature = Buffer.from([0xff, 0xd8, 0xff, 0xe0]);
 
   constructor(options: StreamOptions = {}) {
     super();
@@ -76,7 +76,7 @@ class StreamCamera extends EventEmitter {
       try {
         const args: Array<string> = [
           /**
-           * Add the command-line arguments that are common to both `raspivid` and `raspistill`
+           * Add the command-line arguments that are common to both `rpicam-vid` and `rpicam-still`
            */
           ...getSharedArgs(this.options),
 
@@ -151,15 +151,15 @@ class StreamCamera extends EventEmitter {
           '--output',
           '-',
         ];
-
+        console.log('args', args);
         // Spawn child process
-        this.childProcess = spawn('raspivid', args);
+        this.childProcess = spawn('rpicam-vid', args);
 
         // Listen for error event to reject promise
         this.childProcess.once('error', () =>
           reject(
             new Error(
-              "Could not start capture with StreamCamera. Are you running on a Raspberry Pi with 'raspivid' installed?",
+              "Could not start capture with StreamCamera. Are you running on a Raspberry Pi with 'rpicam-vid' installed?",
             ),
           ),
         );

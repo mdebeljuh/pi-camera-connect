@@ -2,6 +2,9 @@
 [![npm](https://img.shields.io/npm/v/pi-camera-connect.svg)](https://www.npmjs.com/package/pi-camera-connect)
 
 # Pi Camera Connect - for NodeJS
+!!Replaced raspistill with rpicam-still to support Raspberry Pi 4 and 400
+!!Replaced raspivid with rpicam-vid to support Raspberry Pi 4 and 400
+!!camera is working, still in development
 
 `pi-camera-connect` is a library to capture and stream Raspberry Pi camera data directly to NodeJS.
 

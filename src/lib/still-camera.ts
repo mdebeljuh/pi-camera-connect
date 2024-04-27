@@ -24,7 +24,7 @@ export interface StillOptions {
 export default class StillCamera {
   private readonly options: StillOptions;
 
-  static readonly jpegSignature = Buffer.from([0xff, 0xd8, 0xff, 0xe1]);
+  static readonly jpegSignature = Buffer.from([0xff, 0xd8, 0xff, 0xe0]);
 
   constructor(options: StillOptions = {}) {
     this.options = {
@@ -37,9 +37,9 @@ export default class StillCamera {
 
   async takeImage() {
     try {
-      return await spawnPromise('raspistill', [
+      return await spawnPromise('rpicam-still', [
         /**
-         * Add the command-line arguments that are common to both `raspivid` and `raspistill`
+         * Add the command-line arguments that are common to both `rpicam-vid` and `rpicam-still`
          */
         ...getSharedArgs(this.options),
 
@@ -63,7 +63,7 @@ export default class StillCamera {
     } catch (err) {
       if (err.code === 'ENOENT') {
         throw new Error(
-          "Could not take image with StillCamera. Are you running on a Raspberry Pi with 'raspistill' installed?",
+          "Could not take image with StillCamera. Are you running on a Raspberry Pi with 'rpicam-still' installed?",
         );
       }
 
